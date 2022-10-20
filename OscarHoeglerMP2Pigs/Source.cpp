@@ -37,6 +37,10 @@ bool computerChoice(int die1value, int die2value,double difficulty);
  * The function, based off the difficulty determines if it is to make the correct or incorrect move
  * If it is to make the correct move (100% of the time at 100 difficulty), it sees the dice that it would be acting on and makes the correct move (passing if either is one)
  * If it is to make the incorrect move, it sees the dice it would be acting on and makes the incorrect move ('rolling' if either is one, and passing if neither is one) */
+void stars(int starcount);
+/* This funciton takes an integer
+ * This integer should be >=1
+ * This function makes a line of stars*/
 int main(void) {
 	//This seeds the game randomly at the start of each round to ensure a different game each time
 	srand(time(0));
@@ -99,6 +103,7 @@ int main(void) {
 			cout << "Current score: " << scorePlayer << endl;
 			cout << "Current sum of rolls: " << rollScore << endl;
 			cout << "Current score + sum " << scorePlayer + rollScore << endl;
+			stars(20);
 			//gets the user input for the next loop
 			input = getUserInput();
 		}
@@ -111,6 +116,7 @@ int main(void) {
 			winner++;
 			break;
 		}
+		stars(40);
 		//sets the dice for the computers turn
 		die1 = rollDie();
 		die2 = rollDie();
@@ -154,6 +160,7 @@ int main(void) {
 			{
 				break;
 			}
+			stars(20);
 		}
 		//Computer talks
 		cout << "I finish my turn..." << endl;
@@ -167,9 +174,7 @@ int main(void) {
 		{
 			break;
 		}
-		//this creates a nice line so it is easier to tell where each turn ends
-		for (int i = 0; i < 80; i++) { cout << "*"; }
-		cout << endl;
+		stars(80);
 	}
 	//winner is 0, false, if the computer wins and the computer says this
 	//winner is 1, true, if the user wins and the proper message is output
@@ -245,7 +250,6 @@ bool isWinningScore(int score)
 	}
 	return false;
 }
-
 /* This funciton takes and 2 integers and a double as input
  * both die1value and die2value can be in the set of integers, but should usually be between 1-6
  * difficulty should be a positive real number, with no effect being noticed if it is > 100
@@ -291,4 +295,13 @@ bool computerChoice(int die1value, int die2value, double difficulty)
 			return false;
 		}
 	}
+}
+/*This function takes an integer as input
+ * starcount should be an integer greater than or equal to 1, else this will just output an endl
+ * this function does not return anything
+ * Use this to create a horizontal bar*/
+void stars(int starcount)
+{
+	for (int i = 0; i < starcount; i++) { cout << "*"; }
+	cout << endl;
 }
